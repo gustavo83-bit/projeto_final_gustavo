@@ -47,6 +47,7 @@ Pense como foi criar com seus colegas de sala para ser algo divertido e facil de
 ## Divisão de tarefas
 ** Quem ira ser responsavel por partes do projeto?
 * Lilyth
+* Wilson
 Não será escrito na pedra! Mas precisamos saber quem cuidou de cada parte e o "Segurar a cartolina" Não é parte das tarefas
 e sim todos devem pensar em como apresentar a continuação do outro.
 * Guilherme; responsavel pelo Javascript,
