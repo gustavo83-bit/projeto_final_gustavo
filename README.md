@@ -10,7 +10,7 @@ Lilyth, Guilherme Firmino, Gustavo, Tarso, Rhuan, e Wilson.
 
 Preciso que faça uma auto biografia sobre ti, pensando com uma empresa pode contratar você.
 * **Lembre** do seu Portifolio e como suas hard e soft skill's pode ajudar e Lembre-se do Hikigai!
-* 
+
 Lilyth:  Olá! Meu nome é Lilyth Cristina, tenho 15 anos e estudo na escola Miguel Munhoz. Sou apaixonada por ates cômicas e musica. Faço curso de violão, também fiz diversos cursos envolvendo a arte(musica, dança, etc...). Trabalho bem em grupo, a maioria das vezes sou a parte da organização.
 Tenho interesse em trabalhar na Le Novo, atualmente estou fazendo o curso de violão, inglês e web design. Meu objetivo é fazer a faculdade de biologia, para ganhar o diploma de zoologia. 
 Guilherme f: sou alguém que sempre gosto de aprender coisas novas e experimentar novas formas de evoluir pessoalmente, estou cursando o curso de web design como o resto do grupo.
