@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Games Brasil</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style_3.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="ícone de console">
+  
+</head>
+
+<body>
+  <div class="container" id="app">
+    <header>
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">B</div>
+        <div>
+          <h1>Biblioteca test</h1>
+          <p>tudo sobre jogos antigos</p>
+        </div>
+      </div>
+
+      <div class="searchbar" role="search" aria-label="Busca de livros">
+        <input id="searchInput" type="search" placeholder="Busque por título, autor ou categoria..."
+          aria-label="Pesquisar livros" />
+        <button id="searchBtn" aria-label="Pesquisar">Buscar</button>
+      </div>
+    </header>
+
+    <div class="top">
+      <aside class="filters" aria-label="Filtros de categoria">
+        <h2>Categorias</h2>
+        <div class="category-list" id="categoryList">
+          <div class="chip active" data-cat="todos">Todos os Jogos</div>
+          <div class="chip" data-cat="mario-64">Mario 64</div>
+          <div class="chip" data-cat="dk-country">Donkey Kong</div>
+          <div class="chip" data-cat="metal-slug">Metal Slug</div>
+          <div class="chip" data-cat="mortal-kombat">Mortal Kombat</div>
+          <div class="chip" data-cat="sonic">Sonic</div>
+          <div class="chip" data-cat="zelda">Zelda</div>
+          <div class="chip" data-cat="sf-ii">Street Fighter II</div>
+        </div>
+
+        <hr style="margin:12px 0;border:0;border-top:1px solid rgba(255,255,255,0.02)">
+        <div>
+          <h2>Filtrar por</h2>
+          <p style="color:var(--muted);font-size:13px;margin:6px 0 0">Use a busca para procurar por título ou autor.
+            Clique em uma categoria para filtrar.</p>
+        </div>
+      </aside>
+
+      <main>
+        <section class="featured" aria-label="Destaque">
+          <div class="info">
+            <h3>Destaque do mês: mortal kombat</h3>
+            <p>jogos antigos: confira todos os jogos</p>
+          </div>
+          <img
+            src="https://preview.redd.it/mortal-kombat-in-the-90s-1992-1997-v0-llast0j5p0a81.jpg?width=640&crop=smart&auto=webp&s=44b66de7b7970adf9d9bbf2d72aa9b07f2d5f9df" 
+            alt="Imagem de destaque do Mortal Kombat"
+          />
+        </section>
+
+        <div class="controls" style="margin-top:14px">
+          <div class="left" id="resultCount">Exibindo 0 jogos</div>
+          <div class="right">
+            <label for="sortSelect" style="color:var(--muted);margin-right:8px">Ordenar:</label>
+            <select id="sortSelect" aria-label="Ordenar livros">
+              <option value="titulo">Título (A–Z)</option>
+              <option value="autor">Autor</option>
+            </select>
+          </div>
+        </div>
+
+        <section style="margin-top:12px">
+          <div class="grid" id="booksGrid" aria-live="polite">
+            </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="creative-section">
+      <h2> Não encontrou o que procurava?</h2>
+      <p> explore nossas recomendações!</p>
+      <div class="recomendation-cards">
+        <div class="card">
+          <h3>Recomendações</h3>
+          <p>Sugestões baseadas nos seus favoritos.</p>
+          <a href="#" class="btn">Ver mais</a>
+        </div>
+        <div class="card">
+          <h3>Lançamentos</h3>
+          <p>Fique por dentro das novidades!</p>
+          <a href="#" class="btn">Conferir</a>
+        </div>
+        <div class="card">
+          <h3> Jogos Clássicos</h3>
+          <p> Reviva os jogos que marcaram época</p>
+          <a href="#" class="btn">Explorar</a>
+        </div>
+      </div>
+      <p class="call-to-action">Sua jornada começa aqui!</p>
+    </div>
+    
+    <audio id="hihi-audio" src=""></audio>
+    <footer>
+      © <span id="year"></span> Biblioteca Municipal de jogos-retrogames games
+    </footer>
+  </div>
+
+  <script src="/js/script_index_3.js"></script>
+
+</body>
+
+</html>

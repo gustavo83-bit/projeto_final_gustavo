@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Game</title>
+</head>
+<link rel="stylesheet" href="/css/style_2.css">
+<link rel="shortcut icon" href="/img/favicon.png" type="image/png">
+<body>
+    
+    <div class="container">
+        <div class="imagem-topo"><img src="/img/img1.png" alt="Logo do Retro Game" width="200" height="100px"></div>
+    </div>
+    <button class="menu" onclick="playhihi()">Menu</button>
+    <div class="funcionar">
+        <h2> Apresentação </h2>
+    </div>
+    <div class="search-bar-container">
+        <input type="text" id="searchinput" placeholder="pesquisar">
+        <button onclick="searchgames()">Pesquisar</button> </div>
+
+    <div class="lista-jogos">
+        <div class="jogo" onclick="abrirjogo('jogo1')">
+            <img src="/img/galaga.png" alt="Capa do Jogo 1" width="150" height="200">
+            </div>
+
+        <div class="jogo" onclick="abrirjogo('jogo2')">
+            <img src="/img/Super_Mario_Bros.png" alt="Capa do Jogo 2" width="150" height="200">
+        </div>
+
+        <div class="jogo" onclick="abrirjogo('jogo3')">
+            <img src="/img/California Games.png" alt="Capa do Jogo 3" width="150" height="200">
+        </div>
+    </div> 
+    <div class="creative-section">
+        <h2> Não encontrou o que procurava?</h2> <p> Explore nossas recomendações!</p>
+        <div class="recomendation-cards">
+            <div class="card">
+                <h3>Recomendações</h3> <p>Sugestões baseadas nos seus favoritos.</p> <a href="#" class="btn">Ver mais</a>
+            </div>
+            <div class="card">
+                <h3>Lançamentos</h3>
+                <p>Fique por dentro das novidades!</p>
+                <a href="#" class="btn">Conferir</a>
+            </div>
+            <div class="card">
+                <h3> Jogos Clássicos</h3>
+                <p> Reviva os jogos que marcaram época</p>
+                <a href="#" class="btn">Explorar</a>
+            </div>
+            <p class="call-to-action">Sua jornada começa aqui!</p>
+        </div>
+        <audio id="hihi-audio" src="/audio/menu_click.mp3"></audio> </div>
+</body>
+<script src="/js/script_2.js"></script> 
+</html>

@@ -1,0 +1,212 @@
+@charset "UTF-8";
+
+/* ====================================
+   1. RESET E BASE
+   ==================================== */
+* {
+    /* Define que a largura e altura incluem padding e border */
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Paleta de cores inspirada em temas retro */
+    --cor-fundo: #282c34; /* Cinza escuro (como a cor de fundo de um monitor antigo) */
+    --cor-primaria: #61dafb; /* Azul ciano brilhante (como luz de neon) */
+    --cor-secundaria: #ff79c6; /* Rosa choque */
+    --cor-texto: #ffffff;
+    --cor-card-fundo: #3a3f47;
+    --cor-sombra: rgba(97, 218, 251, 0.4); /* Sombra do neon azul */
+    --fonte-principal: 'Consolas', monospace; /* Fonte tipo terminal/retro */
+}
+
+/* ====================================
+   2. LAYOUT PRINCIPAL
+   ==================================== */
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: var(--cor-primaria);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    /* Efeito de brilho neon */
+    text-shadow: 0 0 5px var(--cor-sombra), 0 0 10px var(--cor-sombra);
+}
+
+/* ====================================
+   3. COMPONENTES DA INTERFACE
+   ==================================== */
+
+/* Container do Topo/Logo */
+.container {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--cor-secundaria);
+    /* Adiciona uma linha de separação */
+}
+
+/* Botão Menu */
+.menu,
+.search-bar-container button,
+.card .btn {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-fundo);
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    font-weight: bold;
+    margin: 10px;
+    /* Sombra para dar profundidade/destaque */
+    box-shadow: 0 4px 0 #ab5585; 
+}
+
+.menu:hover,
+.search-bar-container button:hover,
+.card .btn:hover {
+    background-color: #ff99d1; /* Cor um pouco mais clara ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação */
+    box-shadow: 0 6px 0 #ab5585;
+}
+
+/* Barra de Pesquisa */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+#searchinput {
+    padding: 10px;
+    border: 2px solid var(--cor-primaria);
+    background-color: var(--cor-card-fundo);
+    color: var(--cor-texto);
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    outline: none;
+    /* Efeito de brilho ao focar */
+    box-shadow: 0 0 5px var(--cor-sombra); 
+}
+
+/* ====================================
+   4. SEÇÃO DE JOGOS
+   ==================================== */
+
+.lista-jogos {
+    display: flex; /* Coloca os jogos lado a lado */
+    justify-content: center; /* Centraliza no ecrã */
+    flex-wrap: wrap; /* Permite quebrar linha em ecrãs pequenos */
+    gap: 30px; /* Espaço entre os jogos */
+    margin: 40px 0;
+}
+
+.jogo {
+    background-color: var(--cor-card-fundo);
+    border: 3px solid var(--cor-primaria);
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    width: 180px; /* Largura fixa para os cartões de jogo */
+}
+
+.jogo:hover {
+    transform: scale(1.05); /* Aumenta o tamanho ao passar o mouse */
+    box-shadow: 0 0 15px var(--cor-sombra), 0 0 20px var(--cor-primaria); 
+    /* Efeito de brilho intenso ao interagir */
+}
+
+.jogo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+/* ====================================
+   5. SEÇÃO CRIATIVA (RECOMENDAÇÕES)
+   ==================================== */
+
+.creative-section {
+    padding: 40px 20px;
+    background-color: #1a1e24; /* Fundo ligeiramente diferente para esta seção */
+    border-top: 5px solid var(--cor-secundaria);
+}
+
+.recomendation-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: var(--cor-card-fundo);
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: left;
+    transition: transform 0.3s;
+    border: 1px solid var(--cor-secundaria);
+}
+
+.card h3 {
+    color: var(--cor-secundaria);
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.call-to-action {
+    margin-top: 40px;
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--cor-primaria);
+}
+
+/* ====================================
+   6. RESPONSIVIDADE (Ajustes para ecrãs mais pequenos)
+   ==================================== */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .lista-jogos {
+        /* Permite que os jogos ocupem mais espaço em telemóveis */
+        gap: 15px;
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .jogo {
+        width: 80%; /* Ocupa 80% da largura do telemóvel */
+        max-width: 300px;
+    }
+
+    .recomendation-cards {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+    }
+}
