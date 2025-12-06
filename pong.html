@@ -1,12 +1,148 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ping Pong</title>
     <link rel="shortcut icon" href="" type="image/x-icon">
-    <link rel="stylesheet" href="styles/styles.css">
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <style>
+
+   /* ====================================
+   CSS: styles.css (Completo com Responsividade)
+   ==================================== */
+
+        :root {
+            /* Paleta de Cores */
+            --cor-fundo-tela: #1a202c;
+            --cor-borda: #4a5568;
+            --cor-placar1: #bd5f24;
+            /* Laranja (do seu HTML) */
+            --cor-placar2: #356c8b;
+            /* Azul (do seu HTML) */
+            --cor-texto: #ffffff;
+            --cor-sombra-neon: #356c8b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--cor-fundo-tela);
+            color: var(--cor-texto);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Título e Logo */
+        div:first-child {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 5px var(--cor-sombra-neon), 0 0 10px var(--cor-sombra-neon);
+        }
+
+        #game-logo {
+            width: 60px;
+            position: relative;
+            top: 2vh;
+            margin-left: 10px;
+        }
+
+        /* Botão Play */
+        #play {
+            background: none;
+            border: 3px solid var(--cor-placar2);
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--cor-placar2);
+        }
+
+        #play img {
+            display: block;
+        }
+
+        /* Área de Jogo (Canvas) - Configurações para Responsividade */
+        canvas {
+            border: 5px solid var(--cor-borda);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background-color: black;
+
+            /* Regras de Responsividade: */
+            max-width: 95vw;
+            max-height: 80vh;
+            width: 90%;
+            /* Mantém a proporção original (1280 / 500 ≈ 2.56) */
+            aspect-ratio: 920 / 500;
+            height: auto;
+        }
+
+        /* Pontuação */
+        #pontuacao {
+            margin-top: 15px;
+            font-size: 2.5em;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .placar-nome {
+            /* Estilos retirados do inline HTML e colocados aqui */
+            font-size: 15px;
+            position: relative;
+            bottom: 0.5vh;
+        }
+
+        #jogador1 {
+            color: var(--cor-placar1);
+        }
+
+        #jogador2 {
+            color: var(--cor-placar2);
+        }
+
+        #pontos_raquetes1 {
+            color: var(--cor-placar1);
+        }
+
+        #pontos_raquete2 {
+            color: var(--cor-placar2);
+        }
+
+        /* Ajustes para telas muito pequenas */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            #pontuacao {
+                font-size: 1.5em;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div>
         <h1>Ping Pong</h1>
@@ -14,17 +150,273 @@
     </div>
     <button id="play" onclick="IniciarJogo()"><img src="img/botap.png" alt="play" width="50px"></button>
     <br>
-    <canvas width="1280" height="500"></canvas>
+    <canvas width="920" height="500"></canvas>
     <div id="pontuacao">
 
-   
-    <span id="jogador1" style="font-size: 15px; color: #bd5f24;" position: relative; bottom: 0.5vh;></span>
-    <span style="color: #bd5f24;" id="pontos_raquetes1"></span> : 
-    <span style="color: #356c8b;" id="pontos_raquete2"></span> 
-<span id="jogador2" style="font-size: 15px; color: #356c8b; position: relative; bottom: 0.5vh;"></span>
- 
-</div>
 
-<script src="js/funcoes.js"></script>
+        <span id="jogador1" style="font-size: 15px; color: #bd5f24;" position: relative; bottom: 0.5vh;></span>
+        <span style="color: #bd5f24;" id="pontos_raquetes1"></span> :
+        <span style="color: #356c8b;" id="pontos_raquete2"></span>
+        <span id="jogador2" style="font-size: 15px; color: #356c8b; position: relative; bottom: 0.5vh;"></span>
+
+    </div>
+
+    <!-- <script src="/js/funcoes.js"></script> -->
+    <script>
+
+        // ====================================
+        // JAVASCRIPT: funcoes.js (Completo com Ajustes de Velocidade)
+        // ====================================
+
+        // --- 1. CONFIGURAÇÃO INICIAL E SELETORES ---
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        const pontosRaquete1 = document.getElementById('pontos_raquetes1');
+        const pontosRaquete2 = document.getElementById('pontos_raquete2');
+        const nomeJogador1 = document.getElementById('jogador1');
+        const nomeJogador2 = document.getElementById('jogador2');
+        const botaoPlay = document.getElementById('play');
+
+        // Variáveis de Controle
+        let gameLoop;
+        let isPlaying = false;
+        const MAX_SCORE = 10;
+
+        // --- OBJETOS DO JOGO ---
+        const campo = {
+            largura: canvas.width,
+            altura: canvas.height,
+            linhaMeio: 5
+        };
+
+        const raquete = {
+            largura: 10,
+            altura: 80,
+            // MAIS RÁPIDO: Aumentado para 15 (antes 10)
+            velocidade: 15
+        };
+
+        const jogador1 = {
+            x: 10,
+            y: campo.altura / 2 - raquete.altura / 2,
+            pontos: 0,
+            cor: '#bd5f24',
+            nome: 'JOGADOR 1 (W/S)'
+        };
+
+        const jogador2 = {
+            x: campo.largura - 10 - raquete.largura,
+            y: campo.altura / 2 - raquete.altura / 2,
+            pontos: 0,
+            cor: '#356c8b',
+            nome: 'JOGADOR 2 (↑/↓)'
+        };
+
+        const bola = {
+            x: campo.largura / 2,
+            y: campo.altura / 2,
+            raio: 8,
+            // MAIS LENTO: Diminuído para 3 (antes 5)
+            velocidadeX: 3,
+            velocidadeY: 3,
+            cor: '#ffffff'
+        };
+
+
+        // --- 2. FUNÇÕES DE DESENHO ---
+
+        function desenharCampo() {
+            ctx.fillStyle = campo.altura / 2;
+            ctx.fillRect(campo.largura / 2 - campo.linhaMeio / 2, 0, campo.linhaMeio, campo.altura);
+        }
+
+        function desenharRaquete(jogador) {
+            ctx.fillStyle = jogador.cor;
+            ctx.fillRect(jogador.x, jogador.y, raquete.largura, raquete.altura);
+        }
+
+        function desenharBola() {
+            ctx.fillStyle = bola.cor;
+            ctx.beginPath();
+            ctx.arc(bola.x, bola.y, bola.raio, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function desenhar() {
+            ctx.clearRect(0, 0, campo.largura, campo.altura);
+
+            desenharCampo();
+            desenharRaquete(jogador1);
+            desenharRaquete(jogador2);
+            desenharBola();
+            atualizarPlacar();
+        }
+
+
+        // --- 3. LÓGICA DO JOGO ---
+
+        function moverBola() {
+            bola.x += bola.velocidadeX;
+            bola.y += bola.velocidadeY;
+
+            // Colisão com topo/fundo
+            if (bola.y - bola.raio < 0 || bola.y + bola.raio > campo.altura) {
+                bola.velocidadeY *= -1;
+            }
+
+            // Colisão com Raquete 1 (Esquerda)
+            if (bola.x - bola.raio < jogador1.x + raquete.largura &&
+                bola.y > jogador1.y &&
+                bola.y < jogador1.y + raquete.altura &&
+                bola.velocidadeX < 0) {
+
+                // Aumenta a velocidade e inverte
+                bola.velocidadeX *= -1.1;
+                let pontoDeImpacto = (bola.y - (jogador1.y + raquete.altura / 2)) / (raquete.altura / 2);
+                bola.velocidadeY = pontoDeImpacto * 10;
+            }
+
+            // Colisão com Raquete 2 (Direita)
+            if (bola.x + bola.raio > jogador2.x &&
+                bola.y > jogador2.y &&
+                bola.y < jogador2.y + raquete.altura &&
+                bola.velocidadeX > 0) {
+
+                // Aumenta a velocidade e inverte
+                bola.velocidadeX *= -1.1;
+                let pontoDeImpacto = (bola.y - (jogador2.y + raquete.altura / 2)) / (raquete.altura / 2);
+                bola.velocidadeY = pontoDeImpacto * 10;
+            }
+
+            // Ponto para Jogador 2
+            if (bola.x < 0) {
+                jogador2.pontos++;
+                resetBola(1);
+            }
+
+            // Ponto para Jogador 1
+            if (bola.x > campo.largura) {
+                jogador1.pontos++;
+                resetBola(-1);
+            }
+        }
+
+        function resetBola(direcaoX) {
+            bola.x = campo.largura / 2;
+            bola.y = campo.altura / 2;
+            // Usa a velocidade inicial ajustada (3)
+            bola.velocidadeX = 3 * direcaoX;
+            bola.velocidadeY = 3 * (Math.random() > 0.5 ? 1 : -1);
+        }
+
+        function moverRaquetes(e) {
+            let key = e.key.toLowerCase();
+
+            // Controles Jogador 1 (W, S)
+            if (key === 'w' && jogador1.y > 0) {
+                jogador1.y -= raquete.velocidade;
+            } else if (key === 's' && jogador1.y < campo.altura - raquete.altura) {
+                jogador1.y += raquete.velocidade;
+            }
+
+            // Controles Jogador 2 (Seta Cima, Seta Baixo)
+            if (key === 'arrowup' && jogador2.y > 0) {
+                jogador2.y -= raquete.velocidade;
+            } else if (key === 'arrowdown' && jogador2.y < campo.altura - raquete.altura) {
+                jogador2.y += raquete.velocidade;
+            }
+        }
+
+// Dentro do /js/funcoes.js
+
+function moverRaquetes(e) {
+    let key = e.key.toLowerCase();
+    
+    // Lista de teclas que queremos bloquear o comportamento padrão (rolagem)
+    const keysToPreventDefault = ['w', 's', 'arrowup', 'arrowdown'];
+
+    // 1. Impedir a rolagem da página
+    if (keysToPreventDefault.includes(key)) {
+        e.preventDefault(); 
+        // Esta linha impede que o navegador execute a ação padrão da tecla.
+    }
+
+    // 2. Lógica de Movimento (mantida)
+
+    // Controles Jogador 1 (W, S)
+    if (key === 'w' && jogador1.y > 0) {
+        jogador1.y -= raquete.velocidade;
+    } else if (key === 's' && jogador1.y < campo.altura - raquete.altura) {
+        jogador1.y += raquete.velocidade;
+    }
+
+    // Controles Jogador 2 (Seta Cima, Seta Baixo)
+    // O 'e.preventDefault()' acima garante que o ecrã não se mova
+    if (key === 'arrowup' && jogador2.y > 0) {
+        jogador2.y -= raquete.velocidade;
+    } else if (key === 'arrowdown' && jogador2.y < campo.altura - raquete.altura) {
+        jogador2.y += raquete.velocidade;
+    }
+}
+
+        // --- 4. CONTROLE DO JOGO E PLACAR ---
+
+        function atualizarPlacar() {
+            pontosRaquete1.textContent = jogador1.pontos;
+            pontosRaquete2.textContent = jogador2.pontos;
+            nomeJogador1.textContent = jogador1.nome;
+            nomeJogador2.textContent = jogador2.nome;
+        }
+
+        function verificarVencedor() {
+            if (jogador1.pontos >= MAX_SCORE) {
+                alert(`${jogador1.nome} Venceu o Jogo!`);
+                PararJogo();
+            } else if (jogador2.pontos >= MAX_SCORE) {
+                alert(`${jogador2.nome} Venceu o Jogo!`);
+                PararJogo();
+            }
+        }
+
+        function gameLoopFn() {
+            if (isPlaying) {
+                moverBola();
+                verificarVencedor();
+                desenhar();
+                gameLoop = requestAnimationFrame(gameLoopFn);
+            }
+        }
+
+        // --- 5. FUNÇÕES DE CONTROLE EXTERNO ---
+
+        // Função chamada pelo botão "Play"
+        function IniciarJogo() {
+            if (!isPlaying) {
+                isPlaying = true;
+                jogador1.pontos = 0;
+                jogador2.pontos = 0;
+                resetBola(Math.random() > 0.5 ? 1 : -1);
+
+                botaoPlay.style.display = 'none';
+
+                gameLoopFn();
+            }
+        }
+
+        function PararJogo() {
+            isPlaying = false;
+            cancelAnimationFrame(gameLoop);
+            botaoPlay.style.display = 'block';
+        }
+
+
+        // --- 6. EVENT LISTENERS ---
+        document.addEventListener('keydown', moverRaquetes);
+        atualizarPlacar();
+
+    </script>
+
 </body>
+
 </html>

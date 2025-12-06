@@ -1,0 +1,286 @@
+@charset "UTF-8";
+/* reset de pagina */
+
+:root{
+  --bg: #ffffff;
+  --card: #0b1220;
+  --muted: #94a3b8;
+  --accent: #60a5fa;
+  --accent-2: #7c3aed;
+  --glass: rgba(255,255,255,0.03);
+  --text: #e6eef8;
+  --radius: 14px;
+  --gap: 18px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  /* Gradiente de fundo escuro para um tema moderno */
+  background: linear-gradient(180deg,#2a4c65 0%, #1f355f 50%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:32px;
+}
+
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:var(--gap);
+}
+/* Header */
+header{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.logo{
+  width:54px;
+  height:54px;
+  /* Logo com gradiente e sombra para destaque */
+  background: linear-gradient(135deg,var(--accent),var(--accent-2));
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  font-weight:800;
+  color:rgb(0, 3, 11);
+  box-shadow:0 6px 18px rgb(151, 197, 254);
+}
+.brand h1{
+  margin:0;
+  font-size:18px;
+  letter-spacing:0.2px;
+}
+.brand p{margin:0;font-size:13px;color:var(--muted)}
+
+/* Search */
+.searchbar{
+  flex:1;
+  margin-left:20px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.searchbar input[type="search"]{
+  width:100%;
+  padding:12px 16px;
+  border-radius:12px;
+  border:1px solid rgb(29, 27, 95);
+  /* Efeito "glass" no fundo */
+  background:var(--glass);
+  color:var(--text);
+  outline:none;
+  font-size:14px;
+  transition:box-shadow .18s ease;
+  box-shadow:0 2px 10px rgb(2, 6, 23) inset;
+}
+.searchbar input::placeholder{color:rgba(230,238,248,0.45)}
+.searchbar button{
+  padding:10px 12px;
+  border-radius:10px;
+  border:0;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* Top area: filters + featured */
+.top{
+  display:grid;
+  grid-template-columns: 260px 1fr; /* Sidebar e Conteúdo Principal */
+  gap:var(--gap);
+  align-items:start;
+}
+
+/* Sidebar filters */
+aside.filters{
+  /* Fundo da sidebar com gradiente */
+  background:linear-gradient(180deg, rgb(15, 13, 51), rgb(30, 45, 92));
+  padding:18px;
+  border-radius:var(--radius);
+  border:1px solid rgba(255,255,255,0.03);
+  min-height:200px;
+}
+.filters h2{margin:0 0 12px 0;font-size:15px}
+.category-list{display:flex;flex-direction:column;gap:8px}
+.chip{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+  color:var(--muted);
+  transition: all .15s ease;
+  border:1px solid transparent;
+}
+.chip:hover{transform:translateY(-3px)}
+.chip.active{
+  color:white;
+  background:linear-gradient(90deg, rgba(96,165,250,0.12), rgba(124,58,237,0.08));
+  border:1px solid rgba(96,165,250,0.12);
+  box-shadow:0 6px 18px rgba(7,18,45,0.6);
+}
+
+/* Featured banner */
+.featured{
+  /* Banner de destaque */
+  background:
+    linear-gradient(90deg, rgb(10, 19, 48), rgb(27, 42, 79)),
+    linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  padding:18px;
+  border-radius:var(--radius);
+  display:flex;
+  gap:18px;
+  align-items:center;
+  justify-content:space-between;
+  border:1px solid rgba(255,255,255,0.03);
+}
+.featured .info h3{margin:0;font-size:18px}
+.featured .info p{margin:6px 0 0 0;color:var(--muted)}
+.featured img{
+  width:120px;
+  height:150px;
+  object-fit:cover;
+  border-radius:8px;
+  box-shadow:0 8px 30px rgba(2,6,23,0.6);
+}
+
+/* Book grid */
+.grid{
+  /* Layout de grade para os cartões de jogo */
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:18px;
+}
+.book{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:14px;
+  border-radius:12px;
+  display:flex;
+  gap:12px;
+  border:1px solid rgba(255,255,255,0.02);
+  transition: transform .15s ease, box-shadow .15s ease;
+  align-items:flex-start;
+}
+.book:hover{
+  /* Efeito de elevação ao passar o mouse */
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(2,6,23,0.7);
+}
+.cover{
+  width:84px;
+  height:120px;
+  flex-shrink:0;
+  border-radius:6px;
+  overflow:hidden;
+  background:#111827;
+}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.meta{flex:1}
+.meta h4{margin:0 0 6px 0;font-size:15px}
+.meta p{margin:0;color:var(--muted);font-size:13px}
+.meta .tags{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+.tag{padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted)}
+
+/* Controls: sort, pagination */
+.controls{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:8px;
+}
+.controls .left{color:var(--muted);font-size:13px}
+.controls select{
+  background:transparent;color:var(--text);
+  padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);
+  outline:none;
+}
+
+/* Footer */
+footer{
+  margin-top:22px;
+  padding:14px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* Creative Section (Recomendações) - Não estava no CSS original, mas foi adicionado para estilizar a seção extra do seu HTML */
+.creative-section {
+  padding: 40px 0;
+  margin-top: var(--gap);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+.recomendation-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.creative-section .card {
+  /* Reutiliza o estilo do 'book' para os cards de recomendação ou define um novo */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 20px;
+  border-radius: 12px;
+  width: 250px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform .15s ease;
+  text-align: left;
+}
+.creative-section .card h3 {
+  color: var(--accent);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.creative-section .card .btn {
+  display: inline-block;
+  background: var(--accent-2);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.call-to-action {
+  margin-top: 20px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+
+/* Responsive */
+@media (max-width:1000px){
+  .top{grid-template-columns: 1fr}
+  .grid{grid-template-columns: repeat(2,1fr)}
+}
+@media (max-width:640px){
+  body{padding:18px}
+  header{flex-direction:column;align-items:stretch;gap:12px}
+  .searchbar{margin-left:0}
+  .grid{grid-template-columns: 1fr}
+  .featured img{display:none}
+  .brand h1{font-size:16px}
+  .recomendation-cards { flex-direction: column; align-items: center; }
+  .creative-section .card { width: 90%; max-width: 300px; }
+}
